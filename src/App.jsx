@@ -12,6 +12,7 @@ import Signup from './components/auth/Signup';
 import { AccountContext } from './contexts/AccountContext';
 import Profile from './components/profile/Profile';
 import Userdashboard from './components/dashboard/Userdashboard';
+import SingleDashboard from './components/dashboard/SingleDashboard';
 
 function App() {
   const [login, setLoggedIn] = useState(false);
@@ -42,6 +43,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile/:id" element={<Profile/>}/>
+            <Route path="/dashboard/:contract_address" element={<SingleDashboard/>}/>
             <Route path="/Userdashboard/:id" element={<Userdashboard/>}/>
           </Routes>
         </BrowserRouter>

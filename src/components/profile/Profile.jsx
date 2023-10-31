@@ -27,7 +27,7 @@ const Profile = () => {
   return (
     <div className='w-screen h-screen flex flex-col'>
         <div className='w-screen bg-blue-400 h-[20em] flex justify-center items-center'>
-            <div className='bg-white p-10 absolute mt-[20em] shadow-md text-center rounded-md'>
+            <div className='bg-white p-10 absolute mt-[20em] shadow-md text-center rounded-md z-0'>
                 <p className='text-4xl font-bold'>{userProfile.first_name} {userProfile.last_name}</p>
                 <p className='text-sm'>{userProfile.email_address}</p>
             </div>
@@ -72,7 +72,7 @@ const Profile = () => {
                     </div>
                     <div className='flex flex-col'>
                         <span className='font-light text-sm'>Role</span>
-                        <span className='font-semibold text-sm'>_</span>
+                        <span className='font-semibold text-sm'>{userProfile.role}</span>
                     </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 import React,{useEffect, useState, useContext} from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { LoginContext } from '../../contexts/LoginContext'
 
 const Userdashboard = () => {
@@ -38,7 +38,7 @@ const Userdashboard = () => {
         <div>
            <h1 className='mb-5'>PENDING PROJECTS</h1> 
         <table>
-            {approvedResponse.length > 0 ?(<thead  class="text-left text-xs text-white uppercase bg-gray-50 rounded-t-md border-1 border-gray-100 dark:text-white">
+            {pendingResponse.length > 0 ?(<thead  class="text-left text-xs text-white uppercase bg-gray-50 rounded-t-md border-1 border-gray-100 dark:text-white">
                 <tr>
                 <th scope='col' className='px-6 py-3' >Project Name</th>
                 <th scope='col' className='px-6 py-3'>Contract Address</th>
@@ -48,7 +48,7 @@ const Userdashboard = () => {
                 <th scope='col' className='px-6 py-3'>Status</th>
                 </tr>
             </thead>):<></>}
-            {approvedResponse.length > 0 ?(<tbody className='text-left text-sm font-normal '>
+            {pendingResponse.length > 0 ?(<tbody className='text-left text-sm font-normal '>
                 {pendingResponse?.map((data, index) => (<tr key={index} className='h-[5em] hover:bg-blue-50 cursor-pointer border-b border-blue-200'>
                     <th scope='col' className='px-6 py-3' >{data.name_of_project}</th>
                     <th scope='col' className='px-6 py-3' >{data.contract_address}</th>

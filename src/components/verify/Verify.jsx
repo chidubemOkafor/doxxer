@@ -3,6 +3,7 @@ import { ethers } from 'ethers'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { LoginContext } from '../../contexts/LoginContext';
+import {ImSpinner8} from 'react-icons/im'
 
 
 const Verify = () => {
@@ -11,6 +12,7 @@ const Verify = () => {
   const [isConnected, setIsConnected] = useState(false);
   const [binaryData, setBinaryData] = useState('')
   const [errorText, setErrorText] = useState('');
+  const [loading, setLoading] = useState(false)
 
   const {id} = useParams()
 
@@ -62,6 +64,8 @@ const Verify = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+    try{
+    setLoading(true)
     if (newSigner === null) {
       setErrorText('You are not connected');
     } else {
@@ -69,6 +73,11 @@ const Verify = () => {
       const response = await axios.post(`http://localhost:7000/api/postVerify/${id}`,formData)
       console.log(response.data);
     }
+  } catch(error) {
+    console.error(error)
+  } finally {
+    setLoading(false)
+  }
   };
 
   const handleOption = (e) => {
@@ -116,7 +125,7 @@ const Verify = () => {
                     <label>Twitter Profile link <span className='text-red-500'>*</span></label>
                     <input className={input} type='text' name='twitter_profile_link' value={formData.twitter_profile_link} onChange={handleChange} required/>
                 </div>
-                <button className='w-full bg-blue-400 text-white rounded-md py-3 mt-5' type='submit'>Dox me</button>
+                {!loading ? <button className='w-full bg-blue-400 text-white rounded-md py-3 mt-5' type='submit'>Dox me</button>:<button className="bg-blue-400 rounded-md h-10 cursor-not-allowed flex justify-center items-center"><ImSpinner8 className='h-7 w-7 animate-spin text-white'/></button>}
             </div>
             <div>
                 <div className={label}>
@@ -189,7 +198,7 @@ const Verify = () => {
                 </div>
                 <div className='flex flex-col'>
                     <label>connect with the deployer address<span className='text-red-500'>*</span></label>
-                    <button className='bg-blue-400 rounded-md text-white py-3' onClick={()=> connect()}>Connect Wallet</button>
+                    {!loading ? <button className='bg-blue-400 rounded-md text-white py-3' onClick={()=> connect()}>Connect Wallet</button>: <button className="bg-blue-400 rounded-md h-10 cursor-not-allowed flex justify-center items-center"><ImSpinner8 className='h-7 w-7 animate-spin text-white'/></button>}
                     {isConnected ? <span className='text-red-500'>not connected</span> : <></>}
                 </div>
             </div>
