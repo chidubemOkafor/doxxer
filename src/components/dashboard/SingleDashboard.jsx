@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import {BsFillPencilFill} from 'react-icons/bs'
 import {GoQuestion} from 'react-icons/go'
+import { useNavigate } from 'react-router-dom'
 
 const SingleDashboard = () => {
-
+    const navigate = useNavigate()
     const adj = 'flex gap-[10em] py-3'
     const title = 'text-blue-400 flex gap-2 items-center w-[10em]'
     const top_layer = 'border-b border-blue-100'
@@ -22,13 +23,24 @@ const SingleDashboard = () => {
         getData()
     },[])
 
-    const handleDox = async() => {
+    const handleAction = async (status) => {
         try {
-            await axios.post(`http://localhost:7000/api/approveProject/${contract_address}`)
+          let requestData = {};
+          if (status === "approved") {
+            requestData = { status: "approved" };
+          } else if (status === "rejected") {
+            requestData = { status: "rejected" };
+          } else {
+            console.error("Invalid status provided.");
+            return;
+          }
+          await axios.post(`http://localhost:7000/api/approveProject/${contract_address}`, requestData);
+          navigate('/dashboard')
         } catch (error) {
-            console.error(error)
+          console.error(error);
         }
-    }
+      };
+      
 
     return (
         <div className='h-[100vh] w-[100%] flex flex-col mt-[5em] items-center justify-center '>
@@ -78,11 +90,11 @@ const SingleDashboard = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex justify-end items-center gap-5 w-[80%]'>
-                <p className='flex items-center gap-2 cursor-pointer py-3 mt-5'><BsFillPencilFill className='h-6 w-6'/> write bug report</p> 
-                <button  className=' border-red-400 border-2 text-red-400 rounded-md py-3 px-14 mt-5 hover:shadow-md'>Reject</button>
-                <button  className=' border-green-400 text-green-400 border-2 rounded-md py-3 px-14 mt-5 hover:shadow-md'>Reject with reason</button>
-                <button  className=' border-blue-400 text-blue-400 border-2 rounded-md py-3 px-14 mt-5' onClick={() => handleDox()}>DOXX</button>
+            <div className='flex justify-end items-center gap-10 w-[80%]'>
+                <p className='flex items-center gap-2 cursor-pointer py-3 mt-5 hover:underline'><BsFillPencilFill className='h-6 w-6'/> write bug report</p> 
+                <button  className='hover:underline text-red-400 flex mt-5'>Reject</button>
+                <button  className='hover:underline text-green-400 flex mt-5'>Reject with reason</button>
+                <button  className='hover:underline text-blue-400 flex mt-5' onClick={() => handleAction("approved")}>DOXX</button>
             </div>
         </div>
     )

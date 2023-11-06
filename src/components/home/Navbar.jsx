@@ -9,7 +9,7 @@ const Navbar = (prop) => {
   const { account, setAccount } = useContext(AccountContext);
   const { login, setLoggedIn } = useContext(LoginContext);
   const [accountHover, toggleAccountHover] = useState(false);
-  const list = "font-light hover:text-yellow-400 hover:font-semibold cursor-pointer"; 
+  const list = "font-light hover:underline cursor-pointer"; 
 
   const Login = () => {
     setLoggedIn(false)
@@ -27,11 +27,11 @@ const Navbar = (prop) => {
           <Link to=""><li className={list}>Services</li></Link>
           {!login ? <li onClick={() => prop.toggleSignUp()} className={list}>Create free account</li> : <></>}
         </ul>
-        {login ? (<div className='flex items-center gap-2 cursor-pointer' onMouseEnter={() => toggleAccountHover(true)} >
+        {login ? (<div className='flex items-center gap-2 cursor-pointer absolute right-[15em]' onMouseEnter={() => toggleAccountHover(true)} >
           <span className='flex items-center'>{account.first_name}<IoMdArrowDropdown/></span>
           <img src="https://t4.ftcdn.net/jpg/00/73/21/11/240_F_73211193_D9zi1Y4DiSTjJ8rxPBPj0ihliPHAK00N.jpg" className='w-10 h-10 rounded-full'></img>
           {accountHover ? (
-            <div id='close' onMouseLeave={() => toggleAccountHover(false)} className='bg-white rounded-md border border-blue-200 p-5 z-20 absolute mt-[13em]'>
+            <div id='close' onMouseLeave={() => toggleAccountHover(false)} className='bg-white w-[15em] p-5 z-20 absolute top-[3.2em] shadow-sm border-1 border-slate-50'>
               <ul className='flex flex-col gap-5'>
                 <Link to={`/profile/${account._id}`}><li className='hover:underline'>Profile</li></Link>
                 <Link to={`/Userdashboard/${account._id}`}><li className='hover:underline'>Dashboard</li></Link>

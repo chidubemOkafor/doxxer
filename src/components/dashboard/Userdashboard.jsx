@@ -7,7 +7,6 @@ const Userdashboard = () => {
     const {login,setLoggedIn } = useContext(LoginContext)
     const [pendingResponse, setPendingResponse] = useState([])
     const [approvedResponse,setApprovedResponse] = useState([])
-    const [strings, toStrings] = useState("")
     const {id} = useParams()
     useEffect(()=> { 
         if(!login) { 
