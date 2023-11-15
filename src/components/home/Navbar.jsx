@@ -39,7 +39,8 @@ const Navbar = (prop) => {
                 {account.role != "Admin" && <Link to={`/Userdashboard/${account._id}`}><li className='hover:underline'>Dashboard</li></Link>}
                 {account.role != "user" && <Link to={`/dashboard`}> <li className='hover:underline'>Dox projects</li></Link>}
                {account.role != "Admin" && <Link to={`/verify/${account._id}`}><li className='hover:underline'>Verify Project</li></Link>} 
-               {account.role != "Admin" && <li className='hover:underline'>Become a doxxer and earn</li>}
+               <Link to={`/Notifications`}><li>Notifications</li></Link>
+               {account.role != "Admin" && <Link to={`/become_a_doxxer`}><li className='hover:underline'>Become a doxxer and earn</li></Link>}
                 <li className='hover:underline' onClick={() => LogOut()}> Log out</li>
               </ul>
             </div>

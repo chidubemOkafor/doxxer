@@ -13,6 +13,8 @@ import { AccountContext } from './contexts/AccountContext';
 import Profile from './components/profile/Profile';
 import Userdashboard from './components/dashboard/Userdashboard';
 import SingleDashboard from './components/dashboard/SingleDashboard';
+import BecomeADoxxer from './pages/become_a_doxxer/BecomeADoxxer'
+import Notifications from './pages/notifications/Notifications';
 
 function App() {
   const [login, setLoggedIn] = useState(false);
@@ -45,6 +47,8 @@ function App() {
             <Route path="/profile/:id" element={<Profile/>}/>
             <Route path="/dashboard/:contract_address" element={<SingleDashboard/>}/>
             <Route path="/Userdashboard/:id" element={<Userdashboard/>}/>
+            <Route path="/become_a_doxxer" element={<BecomeADoxxer/>}/>
+            <Route path="/Notifications" element={<Notifications/>}/>
           </Routes>
         </BrowserRouter>
       </LoginContext.Provider>
