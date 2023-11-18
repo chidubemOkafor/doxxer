@@ -15,6 +15,7 @@ import Userdashboard from './components/dashboard/Userdashboard';
 import SingleDashboard from './components/dashboard/SingleDashboard';
 import BecomeADoxxer from './pages/become_a_doxxer/BecomeADoxxer'
 import Notifications from './pages/notifications/Notifications';
+import Waitlist from './pages/waitlist/Waitlist'
 
 function App() {
   const [login, setLoggedIn] = useState(false);
@@ -49,6 +50,7 @@ function App() {
             <Route path="/Userdashboard/:id" element={<Userdashboard/>}/>
             <Route path="/become_a_doxxer" element={<BecomeADoxxer/>}/>
             <Route path="/Notifications" element={<Notifications/>}/>
+            <Route path="/Waitlist" element={<Waitlist/>}/>
           </Routes>
         </BrowserRouter>
       </LoginContext.Provider>
