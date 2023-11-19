@@ -6,12 +6,12 @@ const Search = () => {
   const [searchText, setSearchText] = useState('');
   const [approved, setApproved] = useState([]);
 
-const getApproved = async (searchText) => { // Pass searchText as a parameter
+const getApproved = async (query) => { // Pass searchText as a parameter
+  e.preventDefault()
   try {
-    const response = await axios.get(`http://localhost:7000/api/approvedProjects`, {
-      params: { searchText }
-    });
-    console.log(response.data.result);
+    const response = await axios.get(`http://localhost:7000/api/search?q=${query}`);
+    // const data = await response.json();
+    console.log(response)
     setApproved(response.data.result);
   } catch (error) {
     console.error(error);
@@ -27,7 +27,7 @@ const changeValue = (e) => {
   return (
     <div className='flex flex-col items-center'>
       <div className='flex w-screen justify-center mt-[15em]'>
-        <form method='POST'>
+        <form method='POST' onSubmit={getApproved(searchText)}>
           <div className='flex'>
             <input
               type='search'
