@@ -27,7 +27,7 @@ const Waitlist = () => {
     </tr>))}
      </tbody>
  </table>
- </div>: <div className='flex items-center justify-center h-[20em] uppercase text-blue-300'>no waitlist</div>}
+ </div>: <div className='flex items-center justify-center h-[20em] uppercase text-blue-300 '>no waitlist</div>}
  </div>
   )
 }
